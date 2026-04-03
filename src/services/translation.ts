@@ -456,10 +456,12 @@ export class TranslationService {
     const message = choice.message;
     const content: Anthropic.Messages.ContentBlock[] = [];
     
-    if (typeof message.content === 'string' && message.content) {
+    // Some reasoning models (e.g. MiniMax-M2) return content in reasoning_content instead of content
+    const textContent = message.content || (message as any).reasoning_content;
+    if (typeof textContent === 'string' && textContent) {
       content.push({
         type: 'text',
-        text: message.content,
+        text: textContent,
         citations: null
       } as Anthropic.Messages.TextBlock);
     }

@@ -98,7 +98,9 @@ export class StreamingToolCallState {
     // Don't emit usage deltas for early chunks - Anthropic doesn't do this
     
     // Track content for token estimation and emit content blocks
-    if (delta?.content) {
+    // Some reasoning models (e.g. MiniMax-M2) send text in reasoning_content instead of content
+    const textContent = delta?.content || (delta as any)?.reasoning_content;
+    if (textContent) {
       // Emit content_block_start on first content
       if (!this.hasEmittedContentBlockStart) {
         events.push({
@@ -118,7 +120,7 @@ export class StreamingToolCallState {
         index: this.contentBlockIndex,
         delta: {
           type: 'text_delta',
-          text: delta.content
+          text: textContent
         }
       } as Anthropic.Messages.ContentBlockDeltaEvent);
     }

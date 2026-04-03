@@ -88,8 +88,8 @@ export class OpenAIService {
       return response;
     } catch (error) {
       if (error instanceof OpenAI.APIError) {
-        const fullUrl = `${this.modelConfig.config.base_url}/v1/chat/completions`;
-        
+        const fullUrl = `${this.modelConfig.config.base_url}/chat/completions`;
+
         Logger.error('OpenAI API Request Failed', {
           url: `POST ${fullUrl}`,
           status: error.status,
@@ -152,8 +152,8 @@ export class OpenAIService {
       return response;
     } catch (error) {
       if (error instanceof OpenAI.APIError) {
-        const fullUrl = `${this.modelConfig.config.base_url}/v1/chat/completions`;
-        
+        const fullUrl = `${this.modelConfig.config.base_url}/chat/completions`;
+
         Logger.error('OpenAI API Stream Request Failed', {
           url: `POST ${fullUrl}`,
           status: error.status,
