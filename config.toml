@@ -1,0 +1,24 @@
+[server]
+port = 3000
+host = "0.0.0.0"
+
+[server.cors]
+enabled = true
+origins = ["*"]
+
+[[models]]
+display_name = "Claude 3.5 Sonnet"
+provider = "openai"
+
+[models.config]
+base_url = "https://api.openai.com"
+api_key = "sk-test-placeholder"
+model_name = "gpt-4o"
+
+[model_routing]
+default_model_display_name = "Claude 3.5 Sonnet"
+
+[defaults]
+max_tokens = 4096
+temperature = 0.7
+stream = false

@@ -36,3 +36,6 @@ coverage/
 tmp/
 temp/
 ref/
+
+# Local config (may contain API keys)
+config.toml
